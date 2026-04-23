@@ -1,12 +1,13 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const path = require('path');
 
 async function scrapeRankings() {
     try {
         console.log("Iniciando busca de atletas");
 
         const headers = {
-            'User-Agent': 'Mozilla/5.0',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept-Language': 'pt-BR,pt;q=0.9'
         };
 
@@ -61,12 +62,14 @@ async function scrapeRankings() {
                     }
 
                     const localPath = await downloadImage(realImageUrl, athlete.name);
+                    
+                    const storagePath = localPath || realImageUrl;
 
                     result.push({
                         name: athlete.name,
-                        fotoUrl: localPath,
+                        fotoUrl: storagePath,
                         weightClass:
-                            $at('.hero-profile__division-title').text().trim() || "UFC",
+                            $at('.hero-profile__division-title').text().trim() || "MMA Fighter",
                         ranking:
                             $at('.hero-profile__division-body').text().trim() || "N/A"
                     });
@@ -75,7 +78,7 @@ async function scrapeRankings() {
                 console.log(`Erro ao processar ${athlete.name}`);
             }
 
-            const delay = 500 + Math.random() * 1000;
+            const delay = 1000 + Math.random() * 2000;
             await new Promise(r => setTimeout(r, delay));
         }
 

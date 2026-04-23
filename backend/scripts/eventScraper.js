@@ -4,25 +4,26 @@ async function scrapeEvents() {
     const eventUrl = "https://www.ufc.com.br/event/ufc-328";
 
     const browser = await puppeteer.launch({
-        headless: false,
-        args: ['--no-sandbox']
+        headless: "new",
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
 
     try {
         const page = await browser.newPage();
+        
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
         await page.setViewport({ width: 1366, height: 768 });
 
         console.log(`Abrindo: ${eventUrl}`);
-        await page.goto(eventUrl, { waitUntil: 'load', timeout: 60000 });
+        await page.goto(eventUrl, { waitUntil: 'networkidle2', timeout: 60000 });
 
-        await new Promise(r => setTimeout(r, 5000));
+        await new Promise(r => setTimeout(r, 3000));
 
         await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
         await new Promise(r => setTimeout(r, 2000));
 
         const cardLutas = await page.evaluate(() => {
             const lutas = [];
-
             const links = Array.from(document.querySelectorAll('a[href*="/athlete/"]'));
 
             const nomesAtletas = links
@@ -42,15 +43,13 @@ async function scrapeEvents() {
                     });
                 }
             }
-
             return lutas;
         });
 
         const finalResult = cardLutas.map(l => ({
             ...l,
             evento: "UFC 328",
-            fotoRed: `/fotos/${l.redCorner.replace(/\s+/g, '_').toLowerCase()}.png`,
-            fotoBlue: `/fotos/${l.blueCorner.replace(/\s+/g, '_').toLowerCase()}.png`
+            timestamp: new Date().toISOString()
         }));
 
         console.log(`${finalResult.length} lutas encontradas`);
@@ -60,7 +59,7 @@ async function scrapeEvents() {
 
     } catch (error) {
         console.error("Erro:", error.message);
-        await browser.close();
+        if (browser) await browser.close();
         return [];
     }
 }
