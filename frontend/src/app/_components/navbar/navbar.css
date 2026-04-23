@@ -1,0 +1,120 @@
+nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #000;
+    height: 80px;
+    padding: 0 20px;
+    border-bottom: 1px solid #444;
+}
+
+.logo-img {
+    height: 80px;
+    cursor: pointer;
+    width: auto;
+}
+
+.nav-list {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list a {
+    color: #a7a7a7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.nav-list a:hover {
+    color: #fff;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ffffff;
+    padding: 6px 14px;
+}
+
+.register {
+    background: #ff0000;
+    color: #000;
+    border: none;
+    padding: 6px 14px;
+}
+
+.auth-buttons button:hover {
+    opacity: 0.8;
+}
+
+.auth-buttons button {
+    border-radius: 10px;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* NOVO - PERFIL */
+
+.profile-container {
+    position: relative;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: #ff0000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 55px;
+    background: #0d0d0d;
+    border-radius: 12px;
+    padding: 10px 0;
+    min-width: 140px;
+    border: 1px solid #222;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 1000;
+}
+
+.item {
+    padding: 10px 16px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 13px;
+}
+
+.item:hover {
+    background: #1a1a1a;
+}
+
+.logout {
+    color: #ff4d4d;
+}

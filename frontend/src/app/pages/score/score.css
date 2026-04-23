@@ -1,0 +1,72 @@
+:host {
+  display: block;
+  background: #050505;
+  min-height: 100vh;
+  color: white;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.score-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.player-card {
+  background: #0d0d0d;
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: 0.2s;
+}
+
+.player-card:hover {
+  background: #151515;
+}
+
+.position {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ff4d4d;
+}
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.player-info span {
+  color: #aaa;
+}
+
+
+.top1 {
+  border-color: gold;
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.top2 {
+  border-color: silver;
+  background: rgba(192, 192, 192, 0.05);
+}
+
+.top3 {
+  border-color: #cd7f32;
+  background: rgba(205, 127, 50, 0.05);
+}

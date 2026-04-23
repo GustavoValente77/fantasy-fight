@@ -1,0 +1,35 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h2>{{ modoCadastro ? 'Criar Conta' : 'Login' }}</h2>
+
+    <input 
+      type="text" 
+      placeholder="Nome"
+      [(ngModel)]="nome"
+    >
+
+    <input 
+      type="password" 
+      placeholder="Senha"
+      [(ngModel)]="senha"
+    >
+
+    <button *ngIf="!modoCadastro" (click)="entrar()">
+      Entrar
+    </button>
+
+    <button *ngIf="modoCadastro" (click)="cadastrar()">
+      Criar Conta
+    </button>
+
+    <p class="toggle" (click)="toggleModo()">
+      {{ modoCadastro ? 'Já tem conta? Entrar' : 'Criar nova conta' }}
+    </p>
+
+    <p class="mensagem">{{ mensagem }}</p>
+
+  </div>
+
+</div>

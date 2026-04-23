@@ -1,0 +1,48 @@
+.profile-page {
+  background: #000;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.banner {
+  height: 200px;
+  background: linear-gradient(135deg, #ff0000, #8b0000);
+}
+
+.profile-card {
+  text-align: center;
+  margin-top: -60px;
+}
+
+.avatar-big {
+  width: 100px;
+  height: 100px;
+  background: #ff0000;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+  border: 4px solid #000;
+}
+
+.profile-card h2 {
+  margin-top: 15px;
+}
+
+.username {
+  color: #888;
+  font-size: 14px;
+}
+
+.edit-btn {
+  margin-top: 20px;
+  background: #ff0000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #000;
+  cursor: pointer;
+}

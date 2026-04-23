@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  background: #050505;
+  min-height: 100vh;
+  color: white;
+  padding: 30px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.midia-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+.post-box {
+  background: #0d0d0d;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.post-box textarea {
+  width: 100%;
+  height: 80px;
+  background: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 10px;
+  color: white;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.post-box button {
+  background: #ff0000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post-card {
+  background: #0d0d0d;
+  border-radius: 20px;
+  padding: 15px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: 0.2s;
+}
+
+.post-card:hover {
+  background: #151515;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.post-header span {
+  color: #888;
+}
+
+.post-card p {
+  font-size: 14px;
+}

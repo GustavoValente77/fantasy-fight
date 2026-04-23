@@ -1,0 +1,39 @@
+<header>
+  <nav>
+    
+    <a routerLink="/home">
+      <img src="/nav.png" class="logo-img">
+    </a>
+
+    <ul class="nav-list">
+      <li><a [routerLink]="['/apostas']">Apostas</a></li>
+      <li><a [routerLink]="['/midia']">Midia</a></li>
+      <li><a [routerLink]="['/score']">Score</a></li>
+    </ul>
+
+    <div class="auth-buttons">
+
+      <ng-container *ngIf="!user">
+        <button class="login" (click)="irLogin()">Login</button>
+        <button class="register" (click)="irCadastro()">Cadastrar</button>
+      </ng-container>
+
+      <ng-container *ngIf="user">
+        <div class="profile-container">
+
+          <div class="avatar" (click)="toggleMenu()">
+            {{ getInicial() }}
+          </div>
+
+          <div class="dropdown" *ngIf="menuAberto">
+            <div class="item" (click)="irPerfil()">Perfil</div>
+            <div class="item logout" (click)="logout()">Sair</div>
+          </div>
+
+        </div>
+      </ng-container>
+
+    </div>
+
+  </nav>
+</header>

@@ -1,0 +1,85 @@
+<div class="main-container">
+  
+  <div class="selection-panel shadow-lg" *ngIf="f1">
+    <div class="matchup-display">
+      
+      <div class="fighter-slot" [class.winner-highlight]="palpite.vencedorId === f1._id" (click)="palpite.vencedorId = f1._id">
+        <div class="image-container">
+          <img [src]="f1.fotoUrl" (error)="handleImageError($event)">
+        </div>
+        <div class="name-tag">{{ f1.name }}</div>
+      </div>
+
+      <div class="vs-divider">VS</div>
+
+      <div class="fighter-slot" *ngIf="f2" [class.winner-highlight]="palpite.vencedorId === f2._id" (click)="palpite.vencedorId = f2._id">
+        <div class="image-container">
+          <img [src]="f2.fotoUrl" (error)="handleImageError($event)">
+        </div>
+        <div class="name-tag">{{ f2.name }}</div>
+      </div>
+
+      <div class="fighter-slot empty" *ngIf="!f2">
+        <div class="image-container dashed-border">?</div>
+        <div class="name-tag opacity-50">AGUARDANDO</div>
+      </div>
+    </div>
+
+    <div class="betting-controls" *ngIf="f1 && f2">
+      <div class="control-row">
+        <div class="selector-group">
+          <span class="label">ROUNDS</span>
+          <div class="pill-buttons">
+            <button *ngFor="let rd of listaRounds" [class.active]="palpite.rounds === rd" (click)="setRound(rd)">{{ rd }}</button>
+          </div>
+        </div>
+
+        <div class="selector-group">
+          <span class="label">MÉTODO</span>
+          <div class="pill-buttons">
+            <button *ngFor="let met of listaMetodos" [class.active]="palpite.metodo === met.id" (click)="palpite.metodo = met.id">{{ met.label }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-footer">
+        <button class="primary-btn" (click)="confirmarAposta()">CONFIRMAR PALPITE</button>
+        <button class="secondary-btn" (click)="resetarAposta()">LIMPAR TUDO</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="fighters-row">
+    <div class="fighter-card" *ngFor="let fighter of fighters" 
+         (click)="select(fighter)"
+         [class.is-selected]="f1?._id === fighter._id || f2?._id === fighter._id">
+      <div class="card-thumb">
+        <img [src]="fighter.fotoUrl" (error)="handleImageError($event)">
+      </div>
+      <div class="card-meta">
+        <strong>{{ fighter.name }}</strong>
+        <p>{{ fighter.weightClass }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-overlay" *ngIf="exibirModal">
+    <div class="modern-modal shadow-2xl">
+      <div class="modal-head">
+        <h2>Aposta Registrada</h2>
+        <div class="underline"></div>
+      </div>
+      
+      <div class="modal-body">
+        <div class="summary-box">
+          <small>Vencedor</small>
+          <h3>{{ resumoAposta.vencedor }}</h3>
+          <div class="method-badge">{{ resumoAposta.detalhes }}</div>
+        </div>
+      </div>
+
+      <button class="close-btn" (click)="fecharModal()">CONCLUIR</button>
+    </div>
+  </div>
+
+</div>
